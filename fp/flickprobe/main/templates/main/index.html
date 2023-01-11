@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>FLICKPROBE</title>
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+header h1 {
+    text-align: center;
+    font-size: 70px;
+    color: black;
+    margin:0px;
+    padding:0px;
+}
+
+header {
+    padding: 30px;
+    background-color:  rgb(230, 220, 29);
+}
+
+.search{
+    padding: 0px;
+    margin:0px ;
+}
+
+.search input{
+    margin:0px;
+    padding: 0px;
+    width: 80%;
+    background-color:white;
+    height:50px;
+    border-radius:50px;
+    text-align:center;
+    
+    margin:0px ;
+}
+
+nav {
+    background-color: rgb(5, 5, 5);
+    overflow: hidden;
+}
+
+nav a {
+    text-decoration: none;
+    padding: 20px;
+    text-align: center;
+    float: left;
+    color: white;
+}
+
+main {
+    background-color: white;
+    text-align: left;
+    padding:10px;
+    border-radius:20px;
+
+}
+
+iframe {
+    height: 75vh;
+    padding: 20px;
+}
+
+img {
+    padding: 10px;
+}
+
+section h5 {
+    margin: 40px;
+}
+
+footer {
+    background-color: #333;
+    overflow: hidden;
+}
+
+footer a {
+    text-decoration: none;
+    padding: 20px;
+    text-align: center;
+    float: left;
+    color: white;
+}
+.fc{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+    flex-wrap: wrap;
+    border-radius:10px;
+}
+.cell {
+    width:400px;
+    height:700px ;
+    text-align: justify;
+    margin: 5px;
+    background-color: rgb(20,20,20);
+    color: white;
+    text-align: justify;
+    border-radius:20px;
+    margin-bottom:40px;
+    text-decoration:none;
+
+
+}
+.cell img{
+    width: 100%;
+    height: 80%;
+    border-radius:20px;   
+
+}
+a {
+  display:block;
+}
+
+
+h2 {
+    margin-right:70%;
+    color: white;
+    background:black;
+    text-align: center;
+    border-radius:50px;
+    font-size:35px;
+
+}
+
+h3 {
+    text-align: justify;
+    border-radius:50px;
+    margin:0px;
+    padding:0px;
+   }
+
+.list
+{
+background-color: rgba(200, 200, 200, 0.8); 
+
+
+}
+
+
+.btn-2 { 
+display: block;
+border: 2px solid black;
+background: transparent;
+padding: 10px 15px; 
+color: black; 
+font-size: 20px; 
+border-radius: 5px; 
+cursor: pointer; 
+outline: none; 
+transition: background 1s, 
+                   color 1s;
+
+}
+.btn-2:hover{ 
+background: #008CBA; 
+color: #fff; 
+box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+</style>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<header>
+        <h1>FLICKPROBE</h1>
+        <form class="search" method="get" action="{% url 'main:home' %}" name="title">
+            <input class="search" type="search" placeholder="Search" aria-label="Search" name="title">
+            <button class="btn-2" type="submit">Search</button>
+
+
+            </form>
+    </header>
+    <nav>
+        <a href="{% url 'main:home' %}">Home</a>
+        <a href="#">Genre</a>
+        <a href="#">Languages</a>
+        <a href="#">TV Shows</a>
+        <a href="/AboutUs">About Us</a>
+    </nav>
+       {% block content %}
+
+    {% endblock %}
+
+
+    <main>
+      <section class="list">
+        <h2 class="heading">Trending</h2>
+        <div class="fc">
+
+           {%for m in movies%}
+             <a href ="{% url "main:detail"  m.id %}" >
+            <div class="cell">
+              
+                  <img src={{m.poster}} alt=""><h3>{{m.name}}</h3><br> Directed by : {{m.director}}
+          
+            </div> </a>
+{%endfor%}
+         
+
+        </div>
+        </section>
+        <section>
+            <h2>Tailor</h2>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/4xl9KfUg8Lc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+        </section>
+       
+    </main>
+
+    <footer>
+        <a href="#">FAQ</a>
+        <a href="#">Contact Us</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Refund Policy</a>
+        <a href="#">&copy; 2020 | Apni Kaksha</a>
+    </footer>
+<!-- partial -->
+  
+</body>
+</html>
